@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #14b8a6;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0d9488;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.scan-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #14b8a6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-circle.active {
+  animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 25px rgba(20, 184, 166, 0);
+  }
+}
+
+.radar {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 2px solid #14b8a6;
+  position: relative;
+  margin: auto;
+  animation: rotate 6s linear infinite;
+}
+
+.radar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(rgba(20, 184, 166, 0.4), transparent 40%);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+html.dark-mode {
+  filter: invert(1) hue-rotate(180deg);
+  background: #111;
+}
+
+html.dark-mode img,
+html.dark-mode video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+
+.swal-margin-top {
+  margin-top: 50px !important;
+}
