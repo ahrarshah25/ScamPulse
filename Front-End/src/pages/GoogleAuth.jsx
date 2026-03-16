@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { googleAuth } from "../api/auth/googleAuth.api";
-import { navigate } from "../hooks/useNavigate";
+import handleRedirect from "../handlers/handleRedirect";
 
 const GoogleAuth = () => {
   const { code } = useParams();
@@ -10,8 +10,8 @@ const GoogleAuth = () => {
     const sendCode = async () => {
       try {
         if (!code) return;
-        await googleAuth(code);
-        navigate("/dashboard");
+        const res = await googleAuth(code);
+        handleRedirect(res.data?.user);
       } catch (error) {
         console.error(error);
       }

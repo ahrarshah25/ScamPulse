@@ -1,20 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 let navigateFn = null;
 
 export const useNavigator = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        navigateFn = navigate;
-    }, [navigate]);
+  navigateFn = navigate;
 };
 
 export const navigate = (to, options) => {
-    if (navigateFn) {
-        navigateFn(to, options);
-    } else {
-        console.error("Navigate function not initialized. Make sure to call useNavigator inside a component!");
-    }
+  if (!navigateFn) {
+    console.error("Navigate function not initialized");
+    return;
+  }
+
+  navigateFn(to, options);
 };

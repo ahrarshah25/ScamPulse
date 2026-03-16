@@ -5,9 +5,10 @@ import emailHandler from "../helpers/emailHandler";
 import passwordHandler from "../helpers/passwordHandler";
 import { signupHandler } from "../api/auth/signup.api";
 import useLoading from "../hooks/useLoading";
-import { sendSignupAlert } from "../api/auth/signupAlert.api";
+import { sendSignupAlert } from "../api/sendMail/signupAlert.api";
 import { navigate } from "../hooks/useNavigate";
 import googleAuth from "../services/googleAuth";
+import authRedictHandler from "../handlers/authRedictHandler";
 
 const Signup = () => {
   const googleLogin = googleAuth();
@@ -18,6 +19,9 @@ const Signup = () => {
     userPassword: "",
     confirmPassword: "",
   });
+
+    authRedictHandler();
+  
 
   const [loading, setLoading] = useLoading(false);
 

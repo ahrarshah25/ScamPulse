@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import Form from "../components/Auth/Form";
 import emailHandler from "../helpers/emailHandler";
-import { sendForgotPasswordMail } from "../api/auth/sendForgotPasswordMail.api";
+import { sendForgotPasswordMail } from "../api/sendMail/sendForgotPasswordMail.api";
 import useLoading from "../hooks/useLoading";
 import Swal from "sweetalert2";
+import authRedictHandler from "../handlers/authRedictHandler";
 
 const SendForgotMail = () => {
   const [formData, setFormData] = useState({
     userEmail: "",
   });
+
+  authRedictHandler();
 
   const [loading, setLoading] = useLoading(false)
 

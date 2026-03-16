@@ -1,14 +1,14 @@
-import React from 'react'
-import Landing from './pages/Landing'
-import { Route, Routes } from 'react-router-dom'
+import React from "react";
+import Landing from "./pages/Landing";
+import { Route, Routes } from "react-router-dom";
 import { useNavigator } from "./hooks/useNavigate";
-import NotFound from './pages/NotFound'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
+import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import GoogleAuth from "./pages/GoogleAuth";
-import SendForgotMail from './pages/SendForgotMail';
-import ResetPassword from './pages/ResetPassword';
-import GitHubAuth from './pages/GitHubAuth';
+import SendForgotMail from "./pages/SendForgotMail";
+import ResetPassword from "./pages/ResetPassword";
+import GitHubAuth from "./pages/GitHubAuth";
 
 const App = () => {
   useNavigator();
@@ -26,7 +26,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

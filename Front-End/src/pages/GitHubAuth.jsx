@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { githubAuth } from "../api/auth/githubAuth.api";
-import { navigate } from "../hooks/useNavigate";
+import handleRedirect from "../handlers/handleRedirect";
 
 const GitHubAuth = () => {
   const { code } = useParams();
@@ -10,8 +10,8 @@ const GitHubAuth = () => {
     const sendCode = async () => {
       try {
         if (!code) return;
-        await githubAuth(code);
-        navigate("/dashboard");
+        const res = await githubAuth(code);
+        handleRedirect(res.data?.user);
       } catch (error) {
         console.error(error);
       }

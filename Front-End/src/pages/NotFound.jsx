@@ -16,10 +16,10 @@ const NotFound = () => {
         <div className="mt-6 max-w-md mx-auto">
           <div className="flex justify-between text-sm font-medium text-gray-600 mb-2">
             <span>Developer Progress</span>
-            <span>20% Done • 80% Left</span>
+            <span>30% Done • 70% Left</span>
           </div>
           <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full w-[20%] bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full"></div>
+            <div className="h-full w-[30%] bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full"></div>
           </div>
         </div>
 

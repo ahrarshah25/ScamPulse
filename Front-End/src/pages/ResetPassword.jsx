@@ -6,12 +6,15 @@ import { navigate } from "../hooks/useNavigate";
 import { forgotPassword } from "../api/auth/resetPassword.api";
 import passwordHandler from "../helpers/passwordHandler";
 import Swal from "sweetalert2";
+import authRedictHandler from "../handlers/authRedictHandler";
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({
     userPassword: "",
     confirmPassword: "",
   });
+
+  authRedictHandler();
   const [params] = useSearchParams();
 
     const token = params.get("token");

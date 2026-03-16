@@ -5,10 +5,11 @@ import emailHandler from "../helpers/emailHandler";
 import passwordHandler from "../helpers/passwordHandler";
 import { userLogin } from "../api/auth/login.api";
 import useLoading from "../hooks/useLoading";
-import { sendLoginAlert } from "../api/auth/loginAlert.api";
-import { navigate } from "../hooks/useNavigate";
+import { sendLoginAlert } from "../api/sendMail/loginAlert.api";
 import googleAuth from "../services/googleAuth";
 import githubAuth from "../services/githubAuth";
+import handleRedirect from "../handlers/handleRedirect";
+import authRedictHandler from "../handlers/authRedictHandler";
 
 const Login = () => {
   const googleLogin = googleAuth();
@@ -17,6 +18,8 @@ const Login = () => {
     userEmail: "",
     userPassword: "",
   });
+
+  authRedictHandler();
 
   const [loading, setLoading] = useLoading(false);
 
@@ -93,7 +96,7 @@ const Login = () => {
           customClass: {
             popup: "swal-margin-top",
           },
-        }).then(() => navigate("/dashboard"));
+        }).then(() => handleRedirect(res.data?.user));
         setFormData({ userEmail: "", userPassword: "" });
       } else {
         Swal.fire({

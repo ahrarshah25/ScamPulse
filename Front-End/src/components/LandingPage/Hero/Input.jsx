@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { MailCheck } from 'lucide-react';
 import Swal from 'sweetalert2';
 import Button from '../Navbar/Button';
-import { subscribeEmail } from '../../../api/subscribe/subscribe.api';
+import { subscribeEmail } from '../../../api/sendMail/subscribe.api';
 import emailHandler from '../../../helpers/emailHandler';
 
 const Input = () => {
