@@ -22,6 +22,8 @@ const DashboardUserContext = ({ children }) => {
     getUser();
   }, []);
 
+  if(currentUser === null) return;
+  
   const user = currentUser;
 
   if (loading) {

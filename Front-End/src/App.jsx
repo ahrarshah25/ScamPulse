@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Landing from "./pages/Landing";
 import { Route, Routes } from "react-router-dom";
 import { useNavigator } from "./hooks/useNavigate";
@@ -9,9 +9,18 @@ import GoogleAuth from "./pages/GoogleAuth";
 import SendForgotMail from "./pages/SendForgotMail";
 import ResetPassword from "./pages/ResetPassword";
 import GitHubAuth from "./pages/GitHubAuth";
+import EnableNotification from "./components/Notifications/EnableNotification";
+import { UserDataContext } from "./context/DashboardUserContext";
+import { listenForegroundMessages } from "./utils/notifications";
 
 const App = () => {
   useNavigator();
+
+  const user = useContext(UserDataContext);
+
+  useEffect(() => {
+    listenForegroundMessages();
+  }, []);
   return (
     <div>
       <Routes>
@@ -25,6 +34,7 @@ const App = () => {
         <Route path="/github-auth" element={<GitHubAuth />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      
     </div>
   );
 };

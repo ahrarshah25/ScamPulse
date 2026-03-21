@@ -11,7 +11,7 @@ import useLoading from "../../../hooks/useLoading";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const user = useContext(UserDataContext);
+  let user = useContext(UserDataContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loading, setLoading] = useLoading(false);
@@ -22,6 +22,8 @@ const Navbar = () => {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
+
+  const isUserEmpty = !user || Object.keys(user).length === 0;
 
   const handleSignOut = async (e) => {
     e.stopPropagation();
@@ -67,7 +69,6 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-       
         <Logo />
 
         <div className="hidden md:block">
@@ -75,7 +76,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          {!user && (
+          {isUserEmpty ? (
             <>
               <Button
                 icon={LogIn}
@@ -89,9 +90,7 @@ const Navbar = () => {
                 onClick={() => navigate("/signup")}
               />
             </>
-          )}
-
-          {user && (
+          ) : (
             <div className="flex items-center gap-4">
               <ProfileCard avatar={user.avatar} />
               <Button
@@ -141,7 +140,7 @@ const Navbar = () => {
         <div className="p-6 flex flex-col gap-4">
           <Tabs mobile />
 
-          {!user && (
+          {isUserEmpty ? (
             <>
               <Button
                 icon={LogIn}
@@ -155,9 +154,7 @@ const Navbar = () => {
                 onClick={() => navigate("/signup")}
               />
             </>
-          )}
-
-          {user && (
+          ) : (
             <>
               <Button
                 icon={ShieldUser}

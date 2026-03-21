@@ -5,12 +5,15 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import DashboardUserContext from "./context/DashboardUserContext.jsx";
+import { NotificationProvider } from "./context/NotificationContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <GoogleOAuthProvider clientId="406664813805-756opg95nvg345ctebdlk7k6a98ipp79.apps.googleusercontent.com">
       <DashboardUserContext>
-        <App />
+        <NotificationProvider>
+          <App />
+        </NotificationProvider>
       </DashboardUserContext>
     </GoogleOAuthProvider>
   </BrowserRouter>,

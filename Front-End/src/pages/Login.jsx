@@ -10,6 +10,7 @@ import googleAuth from "../services/googleAuth";
 import githubAuth from "../services/githubAuth";
 import handleRedirect from "../handlers/handleRedirect";
 import authRedictHandler from "../handlers/authRedictHandler";
+import { sendLoginNotification } from "../api/notifications/loginNotification.api";
 
 const Login = () => {
   const googleLogin = googleAuth();
@@ -83,8 +84,8 @@ const Login = () => {
       const { userEmail, userPassword } = formData;
 
       const res = await userLogin(userEmail, userPassword);
-      await sendLoginAlert(userEmail)
-      
+      await sendLoginAlert(userEmail);
+
       if (res.data?.success) {
         Swal.fire({
           toast: true,
@@ -98,6 +99,7 @@ const Login = () => {
           },
         }).then(() => handleRedirect(res.data?.user));
         setFormData({ userEmail: "", userPassword: "" });
+        await sendLoginNotification(userEmail, res.data?.user.name);
       } else {
         Swal.fire({
           toast: true,
