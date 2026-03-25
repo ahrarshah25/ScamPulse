@@ -2,11 +2,11 @@ import { navigate } from "../hooks/useNavigate";
 
 const handleRedirect = async (user) => {
     if(user?.role === "user") {
-        navigate("/dashboard");
+        navigate("/dashboard", { subdomain: "dashboard" });
     };
 
     if(user?.role === "admin") {
-        navigate("/admin/dashboard");
+        navigate("/admin/dashboard", { subdomain: "dashboard" });
     };
 };
 

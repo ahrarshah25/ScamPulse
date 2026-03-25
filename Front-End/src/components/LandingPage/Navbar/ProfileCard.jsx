@@ -9,7 +9,7 @@ const ProfileCard = ({ avatar }) => {
   const [loading, setLoading] = useLoading(false);
 
   const handleProfileClick = () => {
-    window.location.href = "/dashboard";
+    navigate("/dashboard", { subdomain: "dashboard" });
   };
 
   const handleSignOut = async (e) => {
@@ -28,7 +28,7 @@ const ProfileCard = ({ avatar }) => {
           customClass: {
             popup: "swal-margin-top",
           },
-        }).then(() => navigate("/login"));
+        }).then(() => navigate("/login", { subdomain: "auth" }));
       } else {
         Swal.fire({
           toast: true,

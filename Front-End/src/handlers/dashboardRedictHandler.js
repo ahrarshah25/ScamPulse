@@ -1,15 +1,13 @@
-import { useContext, useEffect } from "react";
-import { UserDataContext } from "../context/DashboardUserContext";
+import { useContext } from "react";
 import { navigate } from "../hooks/useNavigate";
+import { UserDataContext } from "../context/DashboardUserContext";
 
-const dashboardRedictHandler = async () => {
-  const user = useContext(UserDataContext);
+const dashboardRedictHandler = () => {
+    const user = useContext(UserDataContext);
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/login")
+    if(!user) {
+        navigate("/login", { subdomain: "auth" });
     }
-  }, [user]);
 };
 
 export default dashboardRedictHandler;

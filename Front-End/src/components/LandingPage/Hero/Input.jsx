@@ -3,6 +3,7 @@ import { MailCheck } from 'lucide-react';
 import Swal from 'sweetalert2';
 import Button from '../Navbar/Button';
 import { subscribeEmail } from '../../../api/sendMail/subscribe.api';
+import { sendSubscribeNotification } from "../../../api/notifications/subscribeNotification.api";
 import emailHandler from '../../../helpers/emailHandler';
 
 const Input = () => {
@@ -58,6 +59,7 @@ const Input = () => {
         },
         });
         setEmail('');
+        await sendSubscribeNotification(email);
       } else {
         throw new Error('Subscription failed. Please try again.');
       }

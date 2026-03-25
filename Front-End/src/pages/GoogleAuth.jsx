@@ -7,11 +7,19 @@ const GoogleAuth = () => {
   const { code } = useParams();
 
   useEffect(() => {
+    document.title= "Redirecting..."
+  },[]);
+
+  useEffect(() => {
     const sendCode = async () => {
       try {
         if (!code) return;
         const res = await googleAuth(code);
+        if(res.data?.success) {
         handleRedirect(res.data?.user);
+        } else {
+          navigate("/login", { subdomain: "auth" })
+        }
       } catch (error) {
         console.error(error);
       }

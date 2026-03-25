@@ -1,6 +1,6 @@
-# React + Vite
+# ScamPulse - Digital Scam Analyzer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application is madde for detecting scams and securing yourself from scams like Phishing, Fake Job Emails, Fake Payment Screenshots etc.
 
 Currently, two official plugins are available:
 

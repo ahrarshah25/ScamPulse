@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "../components/Auth/Form";
 import emailHandler from "../helpers/emailHandler";
 import { sendForgotPasswordMail } from "../api/sendMail/sendForgotPasswordMail.api";
 import useLoading from "../hooks/useLoading";
 import Swal from "sweetalert2";
 import authRedictHandler from "../handlers/authRedictHandler";
+import { sendforgotPasswordMailNotification } from "../api/notifications/forgotPasswordNotification.api";
 
 const SendForgotMail = () => {
   const [formData, setFormData] = useState({
     userEmail: "",
   });
+
+  useEffect(() => {
+      document.title = "Send Reset Mail - ScamPulse";
+    }, []);
 
   authRedictHandler();
 
@@ -68,6 +73,7 @@ const SendForgotMail = () => {
           },
         });
         setFormData({ userEmail: "" });
+        await sendforgotPasswordMailNotification(userEmail);
       } else {
         Swal.fire({
           toast: true,

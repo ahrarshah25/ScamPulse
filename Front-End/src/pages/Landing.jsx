@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/LandingPage/Navbar/Navbar";
 import Hero from '../components/LandingPage/Hero/Hero';
 import TS from "../components/LandingPage/Trust & Security/TS";
@@ -11,6 +11,9 @@ import Subscribe from "../components/LandingPage/Subscribe/Subscribe";
 import Footer from '../components/LandingPage/Footer/Footer';
 
 const Landing = () => {
+  useEffect(() => {
+    document.title = "ScamPulse - Digital Scam Analyzer | Real-Time Protection From Digital Scams"
+  }, []);
   return (
     <div>
       <Navbar />

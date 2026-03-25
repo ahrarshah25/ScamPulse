@@ -20,6 +20,10 @@ const Login = () => {
     userPassword: "",
   });
 
+  useEffect(() => {
+    document.title = "Login - ScamPulse";
+  }, []);
+
   authRedictHandler();
 
   const [loading, setLoading] = useLoading(false);

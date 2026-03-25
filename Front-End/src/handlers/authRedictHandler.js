@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { UserDataContext } from "../context/DashboardUserContext";
 import handleRedirect from "./handleRedirect";
 
-const authRedictHandler = async () => {
+const authRedictHandler = () => {
   const user = useContext(UserDataContext);
 
   useEffect(() => {

@@ -40,7 +40,7 @@ const Navbar = () => {
           showConfirmButton: false,
           timer: 2000,
           customClass: { popup: "swal-margin-top" },
-        }).then(() => navigate("/login"));
+        }).then(() => navigate("/login", { subdomain: "auth" }));
       } else {
         Swal.fire({
           toast: true,
@@ -82,12 +82,12 @@ const Navbar = () => {
                 icon={LogIn}
                 name="Login"
                 variant="outline"
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/login", { subdomain: "auth" })}
               />
               <Button
                 icon={UserPlus}
                 name="Sign Up"
-                onClick={() => navigate("/signup")}
+                onClick={() => navigate("/signup", { subdomain: "auth" })}
               />
             </>
           ) : (
@@ -145,13 +145,13 @@ const Navbar = () => {
               <Button
                 icon={LogIn}
                 name="Login"
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/login", { subdomain: "auth" })}
               />
               <Button
                 icon={UserPlus}
                 name="Sign Up"
                 variant="outline"
-                onClick={() => navigate("/signup")}
+                onClick={() => navigate("/signup", { subdomain: "auth" })}
               />
             </>
           ) : (
@@ -159,7 +159,7 @@ const Navbar = () => {
               <Button
                 icon={ShieldUser}
                 name="Dashboard"
-                onClick={() => navigate("/dashboard")}
+                onClick={() => navigate("/dashboard", { subdomain: "dashboard" })}
               />
               <Button
                 icon={LogOut}

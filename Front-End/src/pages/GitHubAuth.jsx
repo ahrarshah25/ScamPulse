@@ -2,16 +2,25 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { githubAuth } from "../api/auth/githubAuth.api";
 import handleRedirect from "../handlers/handleRedirect";
+import { navigate } from "../hooks/useNavigate";
 
 const GitHubAuth = () => {
   const { code } = useParams();
+
+  useEffect(() => {
+    document.title= "Redirecting..."
+  },[]);
 
   useEffect(() => {
     const sendCode = async () => {
       try {
         if (!code) return;
         const res = await githubAuth(code);
+        if(res.data?.success) {
         handleRedirect(res.data?.user);
+        } else {
+          navigate("/login", { subdomain: "auth" })
+        }
       } catch (error) {
         console.error(error);
       }

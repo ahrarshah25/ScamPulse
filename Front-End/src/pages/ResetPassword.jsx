@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "../components/Auth/Form";
 import useLoading from "../hooks/useLoading";
 import { useSearchParams } from "react-router-dom";
@@ -7,12 +7,17 @@ import { forgotPassword } from "../api/auth/resetPassword.api";
 import passwordHandler from "../helpers/passwordHandler";
 import Swal from "sweetalert2";
 import authRedictHandler from "../handlers/authRedictHandler";
+import { sendResetPasswordNotification } from "../api/notifications/resetPasswordNotification.api";
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({
     userPassword: "",
     confirmPassword: "",
   });
+
+  useEffect(() => {
+    document.title = "Reset Password - ScamPulse";
+  }, []);
 
   authRedictHandler();
   const [params] = useSearchParams();
@@ -31,7 +36,7 @@ const ResetPassword = () => {
         customClass: {
           popup: "swal-margin-top",
         },
-      }).then(() => navigate("/forgot-password"))
+      }).then(() => navigate("/forgot-password", { subdomain: "auth" }));
     }
   const [loading, setLoading] = useLoading(false);
 
@@ -108,11 +113,12 @@ const ResetPassword = () => {
           customClass: {
             popup: "swal-margin-top",
           },
-        }).then(() => navigate("/login"))
+        }).then(() => navigate("/login", { subdomain: "auth" }))
         setFormData({
           userPassword: "",
           confirmPassword: "",
         })
+        await sendResetPasswordNotification(email);
       } else {
         Swal.fire({
           toast: true,

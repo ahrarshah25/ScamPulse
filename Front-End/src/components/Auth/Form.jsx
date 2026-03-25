@@ -20,7 +20,7 @@ const Form = ({
   func,
   googleClick,
   githubClick,
-  showSocialLogin
+  showSocialLogin,
 }) => {
   return (
     <div className="py-8 min-h-screen flex items-center justify-center bg-black">
@@ -36,7 +36,11 @@ const Form = ({
 
           {showForgot && (
             <div className="flex justify-end">
-              <Anchor text="Forgot password?" href="/forgot-password" />
+              <Anchor
+                text="Forgot password?"
+                href="/forgot-password"
+                subdomain="auth"
+              />
             </div>
           )}
 
@@ -45,12 +49,12 @@ const Form = ({
 
         {showSocialLogin && (
           <>
-          <Divider />
+            <Divider />
 
-        <div className="space-y-3">
-          <SocialIcon type="google" onClick={googleClick} />
-          <SocialIcon type="github" onClick={githubClick} />
-        </div>
+            <div className="space-y-3">
+              <SocialIcon type="google" onClick={googleClick} />
+              <SocialIcon type="github" onClick={githubClick} />
+            </div>
           </>
         )}
 
@@ -59,9 +63,9 @@ const Form = ({
             text={bottomText}
             linkText={bottomLinkText}
             href={bottomHref}
+            subdomain="auth"
           />
         </div>
-
       </div>
     </div>
   );

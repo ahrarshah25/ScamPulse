@@ -21,14 +21,17 @@ export const requestNotificationPermission = async (user) => {
       ),
     });
 
-    console.log("FCM TOKEN:", token);
-
-    await axios.post("http://localhost:5000/api/v1/notifications/save-token", {
+    if(user) {
+      await axios.post("http://localhost:5000/api/v1/notifications/save-token", {
       email: user.email,
       token,
     });
-
     console.log("Token saved to backend ✅");
+    } else {
+      localStorage.setItem("notificationToken", token);
+      console.log("Token Saved To LocalStorage ✅")
+      
+    }
   } catch (error) {
     console.error("Notification error:", error);
   }

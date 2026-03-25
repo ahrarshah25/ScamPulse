@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const NotFound = () => {
+  useEffect(() => {
+    document.title = "404 Not Found - ScamPulse";
+  },[]);
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
       <div className="max-w-5xl w-full text-center">
@@ -16,10 +19,10 @@ const NotFound = () => {
         <div className="mt-6 max-w-md mx-auto">
           <div className="flex justify-between text-sm font-medium text-gray-600 mb-2">
             <span>Developer Progress</span>
-            <span>30% Done • 70% Left</span>
+            <span>35% Done • 70% Left</span>
           </div>
           <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full w-[30%] bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full"></div>
+            <div className="h-full w-[35%] bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full"></div>
           </div>
         </div>
 

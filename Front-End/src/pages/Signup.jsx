@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "../components/Auth/Form";
 import Swal from "sweetalert2";
 import emailHandler from "../helpers/emailHandler";
@@ -9,6 +9,7 @@ import { sendSignupAlert } from "../api/sendMail/signupAlert.api";
 import { navigate } from "../hooks/useNavigate";
 import googleAuth from "../services/googleAuth";
 import authRedictHandler from "../handlers/authRedictHandler";
+import { sendSignupNotification } from "../api/notifications/signupNotification.api";
 
 const Signup = () => {
   const googleLogin = googleAuth();
@@ -19,6 +20,10 @@ const Signup = () => {
     userPassword: "",
     confirmPassword: "",
   });
+
+  useEffect(() => {
+    document.title = "Signup - ScamPulse";
+  }, []);
 
     authRedictHandler();
   
@@ -123,8 +128,9 @@ const Signup = () => {
       setLoading(true);
 
       const name = firstName + " " + lastName;
+      const token = localStorage.getItem("notificationToken");
 
-      const res = await signupHandler(name, userEmail, userPassword);
+      const res = await signupHandler(name, userEmail, userPassword, token);
       await sendSignupAlert(name, userEmail)
       if (res.status === 200 || res.data?.success) {
         Swal.fire({
@@ -137,7 +143,9 @@ const Signup = () => {
           customClass: {
             popup: "swal-margin-top",
           },
-        }).then(() => navigate("/login"))
+        }).then(() => navigate("/login", { subdomain: "auth" }));
+        await sendSignupNotification(userEmail, name);
+        localStorage.removeItem("notificationToken");
       } else {
         Swal.fire({
           toast: true,

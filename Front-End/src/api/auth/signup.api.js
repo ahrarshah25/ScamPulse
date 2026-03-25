@@ -7,6 +7,7 @@ export const signupHandler = async (name, email, password) => {
       name,
       email,
       password,
+      token,
     },
   );
   return res;
